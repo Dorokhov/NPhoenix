@@ -11,7 +11,7 @@ namespace NPhoenix.Client
     {
         private static bool IsRunning = false;
         private static readonly object LockObj = new object();
-        private const string PhoenixClientJarPattern = "phoenix-.*-.*-client.jar";
+        private const string PhoenixClientJarPattern = "phoenix-*-*-client.jar";
 
         internal static void Setup()
         {
@@ -32,7 +32,7 @@ namespace NPhoenix.Client
 
         private static string FindPhoenixClientJar()
         {
-            var directoryName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().FullName);
+            var directoryName = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             var files = Directory.GetFiles(directoryName, PhoenixClientJarPattern, SearchOption.TopDirectoryOnly);
             if (!files.Any())
             {
