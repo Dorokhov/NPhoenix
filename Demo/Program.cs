@@ -16,16 +16,17 @@ namespace NPhoenix.Demo
                     var statement = connection.CreateStatement();
                     try
                     {
-                        statement.ExecuteUpdate("create table TestTable (mykey integer not null primary key, mycolumn varchar)");
+                        statement.ExecuteUpdate("create table HELLOPHOENIX (mykey integer not null primary key, mycolumn varchar)");
                     }
                     catch (NPhoenixSqlException ex)
                     {
                         Console.WriteLine(ex.Message);
                     }
 
-                    statement.ExecuteUpdate("UPSERT INTO TestTable (mykey, mycolumn)VALUES (1, 'a')");
+                    statement.ExecuteUpdate("UPSERT INTO HELLOPHOENIX (mykey, mycolumn)VALUES (1, 'a')");
+                    connection.Commit();
 
-                    var preparedStatement = connection.PrepareStatement("select * from TestTable");
+                    var preparedStatement = connection.PrepareStatement("select * from HELLOPHOENIX");
                     var resultSet = preparedStatement.ExecuteQuery();
                     while (resultSet.Next())
                     {
